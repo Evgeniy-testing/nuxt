@@ -1,0 +1,11 @@
+@use 'sass:math';
+
+$browser-context: 16; // Default browser font-size value
+
+@function rem($size, $base-font--Size: $browser-context) {
+  @return math.div($size, $base-font--Size) * 1rem;
+}
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
