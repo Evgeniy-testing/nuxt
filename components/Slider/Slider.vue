@@ -1,16 +1,35 @@
 <template>
   <div class="Slider">
-    <Text class="Slider__title">Зможеш обрати свій варіант</Text>
+    <div class="Slider__slides">
+      <div class="Slider__slide Slider__slide--active">
+        <Text class="Slider__title">Зможеш обрати свій варіант</Text>
 
-    <div class="Slider__features">
-      <div class="Slider__features-item" v-for="feature in features">
+        <div class="Slider__features">
+          <div class="Slider__features-item" v-for="feature in features">
         <span class="Slider__features-item-icon-box">
           <BaseIcon class="Slider__features-item-icon" name="check"></BaseIcon>
         </span>
-        <span class="Slider__features-item-content">
+            <span class="Slider__features-item-content">
           <Text class="Slider__features-item-title">{{ feature.title }}</Text>
           <Text class="Slider__features-item-text">{{ feature.text }}</Text>
         </span>
+          </div>
+        </div>
+      </div>
+      <div class="Slider__slide">
+        <Text class="Slider__title">Зможеш обрати свій варіант</Text>
+
+        <div class="Slider__features">
+          <div class="Slider__features-item" v-for="feature in features">
+        <span class="Slider__features-item-icon-box">
+          <BaseIcon class="Slider__features-item-icon" name="check"></BaseIcon>
+        </span>
+            <span class="Slider__features-item-content">
+          <Text class="Slider__features-item-title">{{ feature.title }}</Text>
+          <Text class="Slider__features-item-text">{{ feature.text }}</Text>
+        </span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -62,11 +81,11 @@ export default {
     $Feature_icon--size: rem(45);
 
     position: relative;
-    padding: rem(65) rem(53) rem(107);
+    display: flex;
+    flex-direction: column;
     font-family: $Font-Gilroy;
     color: $Color--gray-100;
     background: url("@/assets/images/lines-background.svg") center bottom no-repeat;
-    overflow-y: auto;
 
     &::before {
       position: absolute;
@@ -80,16 +99,25 @@ export default {
       content: '';
     }
 
+    &__slides {
+      overflow-y: auto;
+    }
+
+    &__slide {
+      display: none;
+      padding: rem(65) rem(53) rem(20);
+
+      &--active {
+        display: block;
+      }
+    }
+
     &__title {
       font-family: $Font-Gilroy--light;
       margin-bottom: rem(65);
       color: $Color--gray-100;
       font-size: rem(25);
       line-height: rem(40);
-    }
-
-    &__features {
-      margin-bottom: rem(82);
     }
 
     &__features-item {
@@ -129,9 +157,15 @@ export default {
     }
 
     &__controls-box {
+      //position: absolute;
+      //bottom: rem(107);
+      //left: 50%;
+      //transform: translateX(-50%);
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: rem(107);
+      padding-top: rem(20);
     }
 
     &__controls-arrow {
